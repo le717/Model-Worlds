@@ -28,6 +28,7 @@
 
     $trimmed = array_map('trim', $_POST);
     $errors = $info = array();
+    $mysqli = MW_dbConnect();
 
     // Bot check :)
     if (isset($trimmed['bot'])) {
@@ -44,7 +45,7 @@
     }
 
     // Validate the email
-    if (MW_validateEmail($trimmed['email']) {
+    if (MW_validateEmail($trimmed['email'])) {
       $info['email'] = $mysqli->real_escape_string($trimmed['email']);
     } else {
       $errors[] = 'That is not a valid email!';

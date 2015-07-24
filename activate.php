@@ -4,6 +4,7 @@
   // Validate the info
   if (isset($_GET['x'], $_GET['y']) && MW_validateEmail($_GET['x']) && strlen($_GET['y']) == 32) {
     require 'php/db_connect.php';
+    $mysqli = MW_dbConnect();
 
     // Execute the query
     $e = $mysqli->real_escape_string($_GET['x']);
