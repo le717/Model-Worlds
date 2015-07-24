@@ -1,9 +1,9 @@
 <?php
   function MW_dbConnect() {
-    $DB_USER     = 'root';
-    $DB_PASSWORD = '';
-    $DB_HOST     = '127.0.0.1';
-    $DB_NAME     = 'model_worlds';
+    $DB_USER     = '<YOUR USERNAME HERE>';
+    $DB_PASSWORD = '<YOUR PASSWORD HERE>';
+    $DB_HOST     = '<DATABASE ADDRESS HERE>';
+    $DB_NAME     = 'ModelWorlds';
 
     $mysqli = new MySQLi($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
     if ($mysqli->connect_error) {
