@@ -1,6 +1,10 @@
 <?php
+  /**
+   * Redirect the user to a page on the site.
+   * @param string [$page='index.php'] Redirect destination.
+   */
   function MW_redirectUser($page='index.php') {
-    $url = '//' . $_SERVER['HTTP_HOST'] . '/worlds'; // . dirname($_SERVER['PHP_SELF']);
+    $url = '//' . $_SERVER['HTTP_HOST'] . '/worlds';
     $url = rtrim($url, '/\\');
     $url .= '/' . $page;
     header("Location: {$url}");
@@ -25,7 +29,7 @@
 
   /**
    * Load persistent sign in details.
-   * @return object UserAccount instance
+   * @return object UserAccount instance.
    */
   function MW_loadSignInPersist() {
     return unserialize($_COOKIE['MW_account']);
