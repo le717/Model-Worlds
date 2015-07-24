@@ -9,6 +9,7 @@
       require '../lib/password.php';
     }
 
+    // Clean up the data and establish a database connection
     $trimmed = array_map('trim', $_POST);
     $errors = $info = array();
     $mysqli = MW_dbConnect();
@@ -36,7 +37,7 @@
       return false;
     }
 
-    // Execute the query
+    // Execute a query to retrieve the stored password
     $q = "SELECT `password` FROM `users` WHERE `username`='{$trimmed['username']}' LIMIT 1";
     $r = $mysqli->query($q);
 

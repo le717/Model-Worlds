@@ -1,12 +1,12 @@
 <?php
   require 'php/signin_utils.php';
 
-  // Validate the info
+  // Validate the recieved query string
   if (isset($_GET['x'], $_GET['y']) && MW_validateEmail($_GET['x']) && strlen($_GET['y']) == 32) {
     require 'php/db_connect.php';
     $mysqli = MW_dbConnect();
 
-    // Execute the query
+    // Execute a query to mark the account as activated
     $e = $mysqli->real_escape_string($_GET['x']);
     $q = "UPDATE `users` SET `activated`='Y' WHERE `email`='{$e}' LIMIT 1";
     $mysqli->query($q);

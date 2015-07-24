@@ -26,6 +26,7 @@
       require '../lib/password.php';
     }
 
+    // Clean up the data and establish a database connection
     $trimmed = array_map('trim', $_POST);
     $errors = $info = array();
     $mysqli = MW_dbConnect();
@@ -78,12 +79,13 @@
     $stmt->execute();
 
     // An error occurred
-    if ($stmt->affected_rows !== 1) {
+    // TODO Display this message
+    if ($mysqli->error || $stmt->affected_rows !== 1) {
       $errors[] = 'Your registraion could not be processed. Please contact the administrator about this problem';
       print_r($errors);
     }
 
-    // Shutdown the DB connection
+    // Shutdown the database connection
     $stmt->close();
     $mysqli->close();
     unset($stmt);
