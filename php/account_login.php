@@ -11,6 +11,7 @@
 
     $trimmed = array_map('trim', $_POST);
     $errors = $info = array();
+    $mysqli = MW_dbConnect();
 
     // Validate the username
     if (MW_validateUsername($trimmed['username'])) {

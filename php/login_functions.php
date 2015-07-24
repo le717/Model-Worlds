@@ -1,16 +1,4 @@
 <?php
-  /**
-   * @constructor
-   * This creates a user account object TODO write me!
-   */
-  class UserAccount {
-    public $username;
-
-    public function __construct($username) {
-      $this->username = $username;
-    }
-  }
-
   function MW_redirectUser($page='index.php') {
     $url = '//' . $_SERVER['HTTP_HOST'] . '/worlds'; // . dirname($_SERVER['PHP_SELF']);
     $url = rtrim($url, '/\\');
@@ -61,6 +49,7 @@
       return true;
     }
 
+    require 'UserAccount.php';
     $account = serialize(new UserAccount($username));
     $_SESSION['user'] = $account;
 
