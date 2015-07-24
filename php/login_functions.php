@@ -49,19 +49,28 @@
    * A user is signed in by creating an instance of UserAccount
    * then storing it for the browser session and in a cookie
    * if the user requested persistent sign in.
+   * If the user is already signed in, the existing instance is reused.
    *
    * @param string $username The user to sign in.
    * @param boolean $stayLoggedIn Should sign in be persistent?
+   * @return boolean Always returns true.
    */
   function MW_signIn($username, $stayLoggedIn=false) {
+    // Prevent creating a new instance on every page load
+    if (MW_isSignedIn()) {
+      return true;
+    }
+
     $account = serialize(new UserAccount($username));
     $_SESSION['user'] = $account;
 
     // The user requested to remain signed in
     // The cookie will expire after 30 days
     if ($stayLoggedIn) {
-      setcookie('MW_account', $account,  time() + 60 * 60 *24 * 30, '/', '', false, true);
+      setcookie('MW_account', $account, (time() + 60 * 60 * 24 * 30),
+                '/', '', false, true);
      }
+    return true;
   }
 
   /**
