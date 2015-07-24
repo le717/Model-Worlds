@@ -1,10 +1,9 @@
 <?php
   session_start();
-  require 'php/login_functions.php';
+  require 'php/signin_utils.php';
 
-  // Log outthe user
+  // Sign the user out
   if (MW_isSignedIn()) {
     MW_signOut();
     MW_redirectUser('index.php?signout=1');
   }
-?>

@@ -19,7 +19,7 @@
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     session_start();
     require 'db_connect.php';
-    require 'login_functions.php';
+    require 'signin_utils.php';
 
     // password_*() polyfill for PHP < 5.5.0
     if (!function_exists('password_hash')) {

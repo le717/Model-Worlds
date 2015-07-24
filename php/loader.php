@@ -1,7 +1,7 @@
 <?php
   function MW_setup() {
     session_start();
-    require 'login_functions.php';
+    require 'signin_utils.php';
     require "lib/Mustache/Autoloader.php";
     Mustache_Autoloader::register();
 

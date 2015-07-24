@@ -8,7 +8,7 @@
   MW_pageDesc('Sign into your Model Worlds account');
 ?>
 
-<form id="form-signin" method="post" action="php/account_login.php">
+<form id="form-signin" method="post" action="php/account_signin.php">
   <label><input type="text" name="username" placeholder="Username" tabindex="1" required></label>
   <label><input type="password" name="password" placeholder="Password" tabindex="2" required></label>
   <label><input type="checkbox" name="remember" tabindex="3"><!--checked-->&nbsp;Remember me

@@ -1,5 +1,5 @@
 <?php
-  require 'php/login_functions.php';
+  require 'php/signin_utils.php';
 
   // Validate the info
   if (isset($_GET['x'], $_GET['y']) && MW_validateEmail($_GET['x']) && strlen($_GET['y']) == 32) {
