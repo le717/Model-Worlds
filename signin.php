@@ -16,6 +16,6 @@
   <label><button type="submit" name="submit" tabindex="4">Login</button></label>
 </form>
 
-<p><a href="#">Forgot your password?</a></p>
+<p><a href="forgot-password.php">Forgot your password?</a></p>
 <p><a href="signup.php">Don't have an account? Sign up!</a></p>
 <?php MW_closePage(); ?>

@@ -8,7 +8,7 @@
   MW_pageDesc('Create a free account to upload to Model Worlds!');
 ?>
 
-<p>All fields are required to register! We promise to never use your email for anything. :)</p>
+<p>All fields are required to register! We promise to never use your email for anything.</p>
 <form id="form-register" method="post" action="php/account_create.php">
   <label><input type="email" name="email" placeholder="Email" tabindex="1" required></label>
   <label><input type="text" name="username" placeholder="Username" tabindex="2" required></label>
