@@ -1,4 +1,6 @@
 <?php
+  require_once 'db_connect.php';
+
   /**
    * @constructor
    * This creates a user account object TODO write me!

@@ -16,7 +16,7 @@
    * @return boolean true if signed in, false otherwise.
    */
   function MW_isSignedIn() {
-    return (bool) isset($_SESSION['user']);
+    return (bool) isset($_SESSION['MW_account']);
   }
 
   /**
@@ -32,6 +32,7 @@
    * @return object UserAccount instance.
    */
   function MW_loadSignInPersist() {
+    require_once 'UserAccount.php';
     return unserialize($_COOKIE['MW_account']);
   }
 
@@ -53,9 +54,9 @@
       return true;
     }
 
-    require 'UserAccount.php';
+    require_once 'UserAccount.php';
     $account = serialize(new UserAccount($username));
-    $_SESSION['user'] = $account;
+    $_SESSION['MW_account'] = $account;
 
     // The user requested to remain signed in
     // The cookie will expire after 30 days
@@ -74,7 +75,7 @@
    * persistent sign cookie if present.
    */
   function MW_signOut() {
-    unset($_SESSION['user']);
+    unset($_SESSION['MW_account']);
 
     // Persistent sign in
     if (MW_isSignInPersist()) {
