@@ -9,10 +9,19 @@
 ?>
 
 <form id="form-signin" method="post" action="php/account_signin.php">
-  <label><input type="text" name="username" placeholder="Username" tabindex="1" required></label>
-  <label><input type="password" name="password" placeholder="Password" tabindex="2" required></label>
-  <label><input type="checkbox" name="remember" tabindex="3"><!--checked-->&nbsp;Remember me
-    <div>Not recommended on shared or public computers</div></label>
+  <label>
+    <span>Username</span>
+    <input type="text" name="username" placeholder="Your username goes here" tabindex="1" required>
+  </label>
+  <label>
+    <span>Password</span>
+    <input type="password" name="password" placeholder="Your password goes here" tabindex="2" required>
+  </label>
+  <label>
+    <span></span>
+    <input type="checkbox" name="remember" tabindex="3"><!--checked-->&nbsp;Remember me
+    <div>Not recommended on shared or public computers</div>
+  </label>
   <label><button type="submit" name="submit" tabindex="4">Login</button></label>
 </form>
 
