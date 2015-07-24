@@ -19,4 +19,5 @@
   <label><button type="submit" name="submit" tabindex="5">Sign me up!</button></label>
 </form>
 
+<p><a href="signin.php">Already have an account? Sign in!</a></p>
 <?php MW_closePage(); ?>
