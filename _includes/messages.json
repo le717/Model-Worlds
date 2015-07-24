@@ -3,5 +3,6 @@
   "actierror": "Your account could not be activated. Please contact the administrator about this problem.",
   "actifinish": "Your account has been successfully activated.",
   "signin": "You are now signed in.",
-  "signout": "You are now signed out."
+  "signout": "You are now signed out.",
+  "pwresetemail": "A password reset email has been sent to the address you entered."
 }
