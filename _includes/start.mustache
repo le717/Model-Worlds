@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{#page_title}}{{page_title}} | Model Worlds{{/page_title}}{{^page_title}}Model Worlds{{/page_title}}</title>
+  <meta name="description" content="{{page_title}}">
+  <meta name="keywords" content="lego worlds, lego worlds mods,model worlds,modelworlds,lego digital designer">
+  <meta property="og:site_name" content="Model Worlds">
+  <meta property="og:title" content="{{page_title}}">
+  <meta property="og:description" content="{{page_title}}">
+  <meta property="og:image" content="/img/logo.png">
+  <meta property="og:url" content="http://www.modelworlds.net/">
+  <!--[if IE]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,400italic,700italic|Josefin+Sans:700">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <section class="{{^messagebox}}hidden{{/messagebox}}" id="messagebox">
+    <i class="fa fa-info-circle"></i>&nbsp;
+    <span id="message">{{messagebox}}</span>
+  </section>
+
+  <aside class="toolbar">
+    {{#signed_in}}
+    <span><a href="signout.php">Sign Out</a></span>
+    {{/signed_in}}
+    {{^signed_in}}
+    <span><a href="signup.php">Sign Up</a></span>
+    <span><a href="signin.php">Sign In</a></span>
+    {{/signed_in}}
+    <div><a class="fa fa-facebook" id="facebook" href="http://facebook.com/pages/Model-Worlds/1628349614078615"></a></div>
+    <div><a class="fa fa-twitter" id="twitter" href="http://twitter.com/ModelWorlds"></a></div>
+    <div><a class="fa fa-envelope" id="email" href="#"></a></div>
+  </aside>
+
+  <header>
+    <a href="index.php">
+      <img class="img-responsive" alt="" width="516" height="151" src="img/logo.png">
+    </a>
+  </header>
+
+  <nav>
+    <li><a href="index.php">Home</a></li>
+    <li><a href="browse.php">Browse</a></li>
+    <li><a href="upload.php">Upload</a></li>
+    <li><a href="tutorial.php">Tutorial</a></li>
+    <li><a href="about.php">About</a></li>
+    <li><a href="contact.php">Contact</a></li>
+  </nav>
+
+  <div id="container">
+    <div id="content">
