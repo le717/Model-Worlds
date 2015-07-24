@@ -1,6 +1,6 @@
 <?php
   $options = array('page_title' => 'Register');
-  require 'php/loader.php';
+  require 'php/page_load.php';
   MW_setup();
   MW_openPage($options);
 
