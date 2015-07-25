@@ -109,3 +109,12 @@
   function MW_validateEmail($email) {
     return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
   }
+
+  function MW_sendEmail($details) {
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    $headers .= 'To: ' . $details['email'] . "\r\n";
+    $headers .= 'From: Model Worlds <noreply@modelworlds.net>' . "\r\n";
+    $body = $_SESSION['mustache']->loadTemplate('email')->render($details);
+    // mail('', "Model Worlds - {$details['action']}", $body, $headers);
+  }
