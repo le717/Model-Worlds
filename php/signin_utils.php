@@ -122,6 +122,7 @@
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     $headers .= 'To: ' . $details['email'] . "\r\n";
     $headers .= 'From: Model Worlds <noreply@modelworlds.net>' . "\r\n";
+    // TODO HTML in $details['body'] is not rendered
     $body = $mustache->loadTemplate('email')->render($details);
     // return mail('', "Model Worlds - {$details['action']}", $body, $headers);
   }

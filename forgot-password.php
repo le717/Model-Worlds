@@ -10,7 +10,7 @@
 
 <p>Once you submit your email address, you will recieve an email containing directions to reset your password.
 <br>You will be back to uploading your latest creations in no time!</p>
-<form id="form-forgot-password" method="post" action="#">
+<form id="form-forgot-password" method="post" action="php/account_pw_reset.php">
   <label>
     <span>Email</span>
     <input type="email" name="email" placeholder="Your email address goes here" tabindex="1" required>
