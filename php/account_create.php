@@ -81,7 +81,7 @@
     // An error occurred
     // TODO Display this message
     if ($mysqli->error || $stmt->affected_rows !== 1) {
-      $errors[] = 'Your registraion could not be processed. Please contact the administrator about this problem';
+      $errors[] = 'Your registration could not be processed. Please contact the administrator about this problem.';
       print_r($errors);
     }
 
