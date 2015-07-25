@@ -6,7 +6,7 @@
     $body .= '<p>Thank you for registering for <a href="http://modelworlds.net">Model Worlds</a>!
     To activate your account and begin uploading your creations, please click on the following link or paste it into your browser.</p>';
     $body .= "<p><a href=\"{$confirmLink}\">$confirmLink</a></p>";
-    $body .= '<p>Thank you for showing your support for Model Worlds!</p><h2>~~ The Model Worlds Staff ~~</h2>';
+    $body .= '<p>Thank you for showing your support for Model Worlds!</p><hr><h3>~~ The Model Worlds Staff ~~</h3>';
 
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
