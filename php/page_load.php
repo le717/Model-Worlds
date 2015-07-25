@@ -2,13 +2,7 @@
   function MW_setup() {
     session_start();
     require 'signin_utils.php';
-    require "lib/Mustache/Autoloader.php";
-    Mustache_Autoloader::register();
-
-    $mustache = new Mustache_Engine(array(
-       'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(__FILE__)) . '/_includes/')
-    ));
-    $_SESSION['mustache'] = $mustache;
+    $_SESSION['mustache'] = MW__loadMustache();
   }
 
   function MW_openPage($options=array()) {

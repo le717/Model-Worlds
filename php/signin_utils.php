@@ -110,11 +110,32 @@
     return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
   }
 
+  /**
+   * Populate the email template and send it.
+   * @param  array.<String:email, String:action, String:body> $details
+   *         Array containing necessary details to compose the email.
+   * @return boolean Same return values as `mail()`.
+   */
   function MW_sendEmail($details) {
+    $mustache = MW__loadMustache();
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     $headers .= 'To: ' . $details['email'] . "\r\n";
     $headers .= 'From: Model Worlds <noreply@modelworlds.net>' . "\r\n";
-    $body = $_SESSION['mustache']->loadTemplate('email')->render($details);
-    // mail('', "Model Worlds - {$details['action']}", $body, $headers);
+    $body = $mustache->loadTemplate('email')->render($details);
+    // return mail('', "Model Worlds - {$details['action']}", $body, $headers);
+  }
+
+  /**
+   * Load the Mustache.php library for template rendering.
+   * @return object
+   */
+  function MW__loadMustache() {
+    require "{$_SERVER['DOCUMENT_ROOT']}/worlds/lib/Mustache/Autoloader.php";
+    Mustache_Autoloader::register();
+
+    $mustache = new Mustache_Engine(array(
+       'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(__FILE__)) . '/_includes/')
+    ));
+    return $mustache;
   }
