@@ -21,13 +21,28 @@
       $errors[] = 'That is not a valid email!';
     }
 
-    // TODO Prevent the password from being reset if it is already reset
-
     // An error occurred!
     if (!empty($errors)) {
       // TODO Display these on the page
       print_r($errors);
       return false;
+    }
+
+    // Check if the password has already been reset
+    $q = "SELECT `activated` FROM users WHERE `email`='{$e}' LIMIT 1";
+    $r = $mysqli->query($q);
+
+    // Get the current action status
+    if ($r->num_rows === 1) {
+      $curStatus = $r->fetch_object()->activated;
+
+      // If the password has already been reset, do not reset it again
+      if ($curStatus === 'PW') {
+        MW_redirectUser('index.php?pwreas=1');
+        $mysqli->close();
+        unset($mysqli);
+        die();
+      }
     }
 
     // Generate a new, temporary password 16 characters long
@@ -42,7 +57,7 @@
 
     // An error occurred
     if ($mysqli->error || $mysqli->affected_rows !== 1) {
-      $errors[] = 'Your registraion could not be processed. Please contact the administrator about this problem';
+      $errors[] = 'Your password could not be reset. Please contact the administrator about this problem.';
       print_r($errors);
     }
 
@@ -60,5 +75,5 @@
       <br><p>Upon login, you will be immediately required to change your password to continue using Model Worlds.</p>"
     );
     MW_sendEmail($emailDetails);
-    MW_redirectUser('index.php?pwresetemail=1');
+    MW_redirectUser('index.php?pwres=1');
   }

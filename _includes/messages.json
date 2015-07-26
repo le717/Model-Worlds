@@ -4,5 +4,6 @@
   "actifinish": "Your account has been successfully activated.",
   "signin": "You are now signed in.",
   "signout": "You are now signed out.",
-  "pwresetemail": "A password reset email has been sent to the email address you entered."
+  "pwres": "A password reset email has been sent to the email address you entered.",
+  "pwreas": "The password reset email has been sent to your email.<br>Please check your inbox again or contact the administrator about this."
 }
