@@ -75,6 +75,8 @@
    * persistent sign cookie if present.
    */
   function MW_signOut() {
+    require_once 'UserAccount.php';
+    unserialize($_SESSION['MW_account'])->setLastSignIn();
     unset($_SESSION['MW_account']);
 
     // Persistent sign in

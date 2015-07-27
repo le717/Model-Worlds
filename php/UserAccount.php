@@ -18,7 +18,7 @@
      * Update the database with time of user's last login.
      * @return boolean Always returns true.
      */
-    private function setLastSignIn() {
+    public function setLastSignIn() {
       $mysqli = MW_dbConnect();
       $q = "UPDATE `users` SET `last_active`=NOW() WHERE `username`='{$this->username}' LIMIT 1";
       $mysqli->query($q);
