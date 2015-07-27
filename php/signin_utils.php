@@ -131,9 +131,13 @@
    * @return object
    */
   function MW__loadMustache() {
-    require "{$_SERVER['DOCUMENT_ROOT']}/worlds/lib/Mustache/Autoloader.php";
-    Mustache_Autoloader::register();
+    // Only register Mustache if it has not been registered before
+     if (!class_exists('Mustache_Autoloader') && !class_exists('Mustache_Engine')) {
+        require "{$_SERVER['DOCUMENT_ROOT']}/worlds/lib/Mustache/Autoloader.php";
+        Mustache_Autoloader::register();
+    }
 
+    // Load the template folder into Mustache
     $mustache = new Mustache_Engine(array(
        'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(__FILE__)) . '/_includes/')
     ));
