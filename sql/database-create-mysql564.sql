@@ -11,10 +11,11 @@ CREATE TABLE `users` (
   `username` CHAR(25) NOT NULL,
   `password` CHAR(255) NOT NULL,
   `date_joined` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `activated` ENUM('Y','N') NOT NULL DEFAULT 'N',
+  `activated` ENUM('Y','N','PW') NOT NULL DEFAULT 'N',
   `last_active` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`_id`),
-  UNIQUE INDEX `name` (`username`)
+  UNIQUE INDEX `name` (`username`),
+  UNIQUE INDEX `email` (`email`)
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
