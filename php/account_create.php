@@ -1,21 +1,4 @@
 <?php
-  function sendActivateEmail($email) {
-    $code = md5(uniqid(rand(), true));
-    $confirmLink = "http://{$_SERVER['HTTP_HOST']}/worlds/activate.php?x=" . urlencode($email) . "&y={$code}";
-    $body = '<h1>Model Worlds Registration</h1>';
-    $body .= '<p>Thank you for registering for <a href="http://modelworlds.net">Model Worlds</a>!
-    To activate your account and begin uploading your creations, please click on the following link or paste it into your browser.</p>';
-    $body .= "<p><a href=\"{$confirmLink}\">$confirmLink</a></p>";
-    $body .= '<p>Thank you for showing your support for Model Worlds!</p><hr><h3>~~ The Model Worlds Staff ~~</h3>';
-
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    $headers .= 'To: ' . $email . "\r\n";
-    $headers .= 'From: Model Worlds <noreply@modelworlds.net>' . "\r\n";
-
-    mail('', 'Model Worlds - Confirm Registration', $body, $headers);
-  }
-
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once 'db_connect.php';
     require_once 'common_utils.php';
@@ -95,9 +78,20 @@
     unset($stmt);
     unset($mysqli);
 
-    // Send the activation email, auto-login, and go back to the index
-    // TODO Replace with MW_sendEmail()
-    sendActivateEmail($trimmed['email']);
+    // Send the activation email
+    $actiLink = "http://{$_SERVER['HTTP_HOST']}/worlds/activate.php?x=" .
+                 urlencode($trimmed['email']) . "&y=" . md5(uniqid(mt_rand(), true));
+    $emailDetails = array(
+      'email' => $trimmed['email'],
+      'action' => 'Registration',
+      'body' => "<p>Thank you for registering for <a href='http://modelworlds.net'>Model Worlds</a>!\n
+      To activate your account and begin uploading your creations, please click on the following link or paste it into your browser.</p>\n
+      <p><a href='{$actiLink}'>$actiLink</a></p>\n
+      "
+    );
+    MW_sendEmail($emailDetails);
+
+    // Auto-login the user and go back to the index
     MW_signIn($info['username']);
     MW_redirectUser('index.php?actiemail=1');
   }
