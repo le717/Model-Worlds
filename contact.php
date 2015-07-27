@@ -35,13 +35,8 @@
                        'mime-version:', 'multipart-mixed:',
                        'content-transfer-encoding:');
 
-      // If any very bad strings are found, return an empty string
-      // TODO Why not just strip the bad text?
-      foreach ($veryBad as $v) {
-        if (stripos($msg, $v)) {
-          return '';
-        }
-      }
+      // Remove any very bad strings
+      $msg = str_replace($veryBad, '', $msg);
       return trim(strip_tags($msg));
     }
 
