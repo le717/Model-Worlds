@@ -18,7 +18,7 @@
 <form id="form-forgot-password" method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
   <label>
     <span>Email</span>
-<?php if (isset($errors['email'])): ?><div class="input-error">That is not a valid email address!</div><?php endif; ?>
+    <?php if (isset($errors['email'])): ?><div class="input-error">That is not a valid email address!</div><?php endif; ?>
     <input type="email" name="email" placeholder="Your email address goes here" tabindex="1" required>
   </label>
   <label><button type="submit" name="submit" tabindex="2">Reset</button></label>
