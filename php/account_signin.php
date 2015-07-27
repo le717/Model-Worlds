@@ -34,8 +34,10 @@
     if (!empty($errors)) {
       // TODO Display these on the page
       print_r($errors);
-      return false;
+      return $errors;
     }
+
+    // TODO Force immediate password change if account status is 'PW'
 
     // Execute a query to retrieve the stored password
     $q = "SELECT `password` FROM `users` WHERE `username`='{$trimmed['username']}' LIMIT 1";
