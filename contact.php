@@ -8,13 +8,14 @@
   MW_pageDesc('"These mechanical birds will get our message out!"');
 ?>
 
-<form id="form-contact" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+<form id="form-contact" method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
   <label>
     <span>Username</span>
     <input type="text" name="name" placeholder="Your username goes here" tabindex="1" required>
   </label>
   <label>
     <span>Email</span>
+<?php if (isset($errMsg)): ?><div class="input-error">That is not a valid email address!</div><?php endif; ?>
     <input type="email" name="email" placeholder="Your email address goes here" tabindex="2" required>
   </label>
   <label>
@@ -24,7 +25,7 @@
 
   <h3>Prove you are not a bot</h3>
   <label><input type="checkbox" name="bot">&nbsp;Do not check</label>
-  <label><button type="submit" name="submit" tabindex="4" >Send</button></label>
+  <label><button type="submit" name="submit" tabindex="4">Send</button></label>
 </form>
 <?php MW_closePage();
 
@@ -47,6 +48,11 @@
     if (isset($cleaned['bot'])) {
       MW_redirectUser('robots.php');
       die();
+    }
+
+    // The email address is not valid
+    if (!MW_validateEmail($cleaned['email'])) {
+      $errMsg = true;
     }
 
     $body = "<p>{$cleaned['name']} (<a href='mailto:{$cleaned['email']}'>{$cleaned['email']}</a>) has sent you a message! Here is the message.</p>";
