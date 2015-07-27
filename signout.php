@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require 'php/signin_utils.php';
+  require 'php/common_utils.php';
 
   // Sign the user out
   if (MW_isSignedIn()) {

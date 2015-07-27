@@ -1,7 +1,7 @@
 <?php
   function MW_setup() {
     session_start();
-    require 'signin_utils.php';
+    require 'common_utils.php';
     $_SESSION['mustache'] = MW__loadMustache();
   }
 

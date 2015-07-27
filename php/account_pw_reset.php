@@ -1,7 +1,7 @@
 <?php
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once 'db_connect.php';
-    require_once 'signin_utils.php';
+    require_once 'common_utils.php';
 
     // password_*() polyfill for PHP < 5.5.0
     if (!function_exists('password_hash')) {

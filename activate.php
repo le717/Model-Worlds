@@ -1,5 +1,5 @@
 <?php
-  require 'php/signin_utils.php';
+  require 'php/common_utils.php';
 
   // Validate the recieved query string
   if (isset($_GET['x'], $_GET['y']) && MW_validateEmail($_GET['x']) && strlen($_GET['y']) == 32) {
