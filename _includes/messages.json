@@ -5,5 +5,6 @@
   "signin": "You are now signed in.",
   "signout": "You are now signed out.",
   "pwres": "A password reset email has been sent to the email address you entered.",
-  "pwreas": "The password reset email has already been sent to your email.<br>Please check your inbox again or contact the administrator about this."
+  "pwreas": "The password reset email has already been sent to your email.<br>Please check your inbox again or contact the administrator about this.",
+  "pwrerr": "Your password could not be reset. Please contact the administrator about this problem."
 }

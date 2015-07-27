@@ -179,6 +179,8 @@ label > span {
   font-weight: 600;
 }
 
+.input-error { color: #c00; }
+
 input[type="text"],
 input[type="email"],
 input[type="password"],

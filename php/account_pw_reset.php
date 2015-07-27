@@ -1,5 +1,4 @@
 <?php
-  session_start();
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once 'db_connect.php';
     require_once 'signin_utils.php';
@@ -17,15 +16,14 @@
     // Validate the email
     if (MW_validateEmail($trimmed['email'])) {
       $e = $mysqli->real_escape_string($trimmed['email']);
-    } else {
-      $errors[] = 'That is not a valid email!';
-    }
 
-    // An error occurred!
-    if (!empty($errors)) {
-      // TODO Display these on the page
-      print_r($errors);
-      return false;
+    } else {
+      // The email is invalid
+      $errors['email'] = true;
+      $mysqli->close();
+      unset($mysqli);
+      return $errors;
+      die();
     }
 
     // Check if the password has already been reset
@@ -34,13 +32,11 @@
 
     // Get the current action status
     if ($r->num_rows === 1) {
-      $curStatus = $r->fetch_object()->activated;
-
       // If the password has already been reset, do not reset it again
-      if ($curStatus === 'PW') {
-        MW_redirectUser('index.php?pwreas=1');
+      if ($r->fetch_object()->activated === 'PW') {
         $mysqli->close();
         unset($mysqli);
+        MW_redirectUser('index.php?pwreas=1');
         die();
       }
     }
@@ -57,8 +53,10 @@
 
     // An error occurred
     if ($mysqli->error || $mysqli->affected_rows !== 1) {
-      $errors[] = 'Your password could not be reset. Please contact the administrator about this problem.';
-      print_r($errors);
+      $mysqli->close();
+      unset($mysqli);
+      MW_redirectUser('forgot-password.php?pwrerr=1');
+      die();
     }
 
     // Shutdown the database connection
