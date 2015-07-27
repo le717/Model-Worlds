@@ -17,9 +17,8 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
-    require 'db_connect.php';
-    require 'common_utils.php';
+    require_once 'db_connect.php';
+    require_once 'common_utils.php';
 
     // password_*() polyfill for PHP < 5.5.0
     if (!function_exists('password_hash')) {
@@ -33,23 +32,24 @@
 
     // Bot check :)
     if (isset($trimmed['bot'])) {
+      $mysqli->close();
       unset($mysqli);
       MW_redirectUser('robots.php');
       die();
-    }
-
-    // Validate the username
-    if (MW_validateUsername($trimmed['username'])) {
-      $info['username'] = $mysqli->real_escape_string($trimmed['username']);
-    } else {
-      $errors[] = 'That is not a valid username!';
     }
 
     // Validate the email
     if (MW_validateEmail($trimmed['email'])) {
       $info['email'] = $mysqli->real_escape_string($trimmed['email']);
     } else {
-      $errors[] = 'That is not a valid email!';
+      $errors['email'] = true;
+    }
+
+    // Validate the username
+    if (MW_validateUsername($trimmed['username'])) {
+      $info['username'] = $mysqli->real_escape_string($trimmed['username']);
+    } else {
+      $errors['username'] = true;
     }
 
     // Validate the password
@@ -57,19 +57,20 @@
       if ($trimmed['password-1'] === $trimmed['password-2']) {
         $info['password'] = password_hash($mysqli->real_escape_string($trimmed['password-1']), PASSWORD_DEFAULT);
       } else {
-        $errors[] = 'The passwords do not match!';
+        $errors['pwMatch'] = true;
       }
 
       // Invalid password
     } else {
-      $errors[] = 'That is not a valid password!';
+      $errors['pwValid'] = true;
     }
 
-    // An error occurred!
-    if (!empty($errors) || !$info['password']) {
-      // TODO Display these on the page
-      print_r($errors);
-      return false;
+    // One or more input errors occurred
+    if (!empty($errors)) {
+      $mysqli->close();
+      unset($mysqli);
+      return $errors;
+      die();
     }
 
     // Execute the query
@@ -78,11 +79,14 @@
     $stmt->bind_param('sss', $info['email'], $info['username'], $info['password']);
     $stmt->execute();
 
-    // An error occurred
-    // TODO Display this message
+    // An error occurred in attempting to record the account
     if ($mysqli->error || $stmt->affected_rows !== 1) {
-      $errors[] = 'Your registration could not be processed. Please contact the administrator about this problem.';
-      print_r($errors);
+      $stmt->close();
+      $mysqli->close();
+      unset($stmt);
+      unset($mysqli);
+      MW_redirectUser('forgot-password.php?signuperr=1');
+      die();
     }
 
     // Shutdown the database connection
@@ -91,8 +95,8 @@
     unset($stmt);
     unset($mysqli);
 
-    // Send the activation email, auto-login,
-    // and go back to the index
+    // Send the activation email, auto-login, and go back to the index
+    // TODO Replace with MW_sendEmail()
     sendActivateEmail($trimmed['email']);
     MW_signIn($info['username']);
     MW_redirectUser('index.php?actiemail=1');
