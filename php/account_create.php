@@ -48,7 +48,7 @@
       $errors['pwValid'] = true;
     }
 
-    // One or more input errors occurred
+    // One or more validation errors occurred
     if (!empty($errors)) {
       $mysqli->close();
       unset($mysqli);

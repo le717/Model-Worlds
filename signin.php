@@ -6,15 +6,22 @@
 
   MW_pageHeader('Sign In');
   MW_pageDesc('Sign into your Model Worlds account');
+
+  // Form submission
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once 'php/account_signin.php';
+  }
 ?>
 
-<form id="form-signin" method="post" action="php/account_signin.php">
+<form id="form-signin" method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
   <label>
     <span>Username</span>
+    <?php if (isset($errors['username'])): ?><div class="input-error">That is not a valid username!</div><?php endif; ?>
     <input type="text" name="username" placeholder="Your username goes here" tabindex="1" required>
   </label>
   <label>
     <span>Password</span>
+    <?php if (isset($errors['password'])): ?><div class="input-error">That is not a valid password!</div><?php endif; ?>
     <input type="password" name="password" placeholder="Your password goes here" tabindex="2" required>
   </label>
   <label>

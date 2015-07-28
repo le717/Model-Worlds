@@ -1,8 +1,7 @@
 <?php
-  session_start();
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require 'db_connect.php';
-    require 'common_utils.php';
+    require_once 'db_connect.php';
+    require_once 'common_utils.php';
 
     // password_*() polyfill for PHP < 5.5.0
     if (!function_exists('password_hash')) {
@@ -18,23 +17,24 @@
     if (MW_validateUsername($trimmed['username'])) {
       $info['username'] = $mysqli->real_escape_string($trimmed['username']);
     } else {
-      $errors[] = 'That is not a valid username!';
+      $errors['username'] = 'That is not a valid username!';
     }
 
     // Validate the password
     if (MW_validatePassword($trimmed['password'])) {
     } else {
-      $errors[] = 'That is not a valid password!';
+      $errors['password'] = 'That is not a valid password!';
     }
 
     // Persistent sign in option
     $stayLoggedIn = (bool) isset($trimmed['remember']) ? true : false;
 
-    // An error occurred!
+    // One or more validation errors occurred
     if (!empty($errors)) {
-      // TODO Display these on the page
-      print_r($errors);
+      $mysqli->close();
+      unset($mysqli);
       return $errors;
+      die();
     }
 
     // TODO Force immediate password change if account status is 'PW'
