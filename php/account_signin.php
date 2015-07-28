@@ -5,7 +5,7 @@
 
     // password_*() polyfill for PHP < 5.5.0
     if (!function_exists('password_hash')) {
-      require '../lib/password.php';
+      require_once 'lib/password.php';
     }
 
     // Clean up the data and establish a database connection
@@ -71,4 +71,5 @@
     $mysqli->close();
     unset($mysqli);
     MW_redirectUser($page . $query);
+    die();
   }

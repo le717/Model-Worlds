@@ -5,7 +5,7 @@
 
     // password_*() polyfill for PHP < 5.5.0
     if (!function_exists('password_hash')) {
-      require '../lib/password.php';
+      require_once '../lib/password.php';
     }
 
     // Clean up the data and establish a database connection
@@ -94,4 +94,5 @@
     // Auto-login the user and go back to the index
     MW_signIn($info['username']);
     MW_redirectUser('index.php?actiemail=1');
+    die();
   }
