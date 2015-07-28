@@ -40,29 +40,31 @@
     // TODO Force immediate password change if account status is 'PW'
 
     // Execute a query to retrieve the stored password
-    $q = "SELECT `password` FROM `users` WHERE `username`='{$trimmed['username']}' LIMIT 1";
-    $r = $mysqli->query($q);
+    $q = 'SELECT `password`, `activated` FROM `users` WHERE `username`=? LIMIT 1';
+    $stmt = $mysqli->prepare($q);
+    $stmt->bind_param('s', $info['username']);
+    $stmt->execute();
+    $stmt->bind_result($dbPass, $dbAcivated);
+    $stmt->fetch();
 
     // Page redirection values
     $page = 'index.php';
     $query = '';
 
-    if ($r->num_rows === 1) {
+    if ($stmt->errno === 0) {
       // Login sucessful
-      if (password_verify($trimmed['password'], $r->fetch_object()->password)) {
+      if (password_verify($trimmed['password'], $dbPass)) {
         $query = '?signin=1';
         MW_signIn($trimmed['username'], $stayLoggedIn);
 
       // Wrong password
       } else {
-        // TODO Message
-        $page = 'signin.php';
+        $page = 'signin.php?signinerr=1';
       }
 
-      // Database error
+      // Some database error occurred
     } else {
-      // TODO Message
-      $page = 'signin.php';
+      $page = 'signin.php?signinerr=1';
     }
 
     // Shutdown the DB connection and go back to the index

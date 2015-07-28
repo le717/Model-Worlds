@@ -6,6 +6,7 @@
   "pwreas": "The password reset email has already been sent to your email.<br>Please check your inbox again or contact the administrator about this.",
   "pwrerr": "Your password could not be reset. Please contact the administrator about this problem.",
   "signin": "You are now signed in.",
+  "signinerr": "You could not be signed in. Double check your credentials and try again.<br>If the problem persists, please contact the administrator.",
   "signout": "You are now signed out.",
   "signuperr": "Your registration could not be processed. Please contact the administrator about this problem."
 }

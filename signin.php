@@ -8,6 +8,7 @@
   MW_pageDesc('Sign into your Model Worlds account');
 
   // Form submission
+  // TODO Make fields sticky
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once 'php/account_signin.php';
   }
