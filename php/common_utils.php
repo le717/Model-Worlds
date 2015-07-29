@@ -125,7 +125,7 @@
     $headers .= 'To: ' . $details['email'] . "\r\n";
     $headers .= 'From: Model Worlds <noreply@modelworlds.net>' . "\r\n";
     $body = $mustache->loadTemplate('email')->render($details);
-    // return mail('', "Model Worlds - {$details['action']}", $body, $headers);
+    return mail('', "Model Worlds - {$details['action']}", $body, $headers);
   }
 
   /**
