@@ -62,7 +62,7 @@
     // The cookie will expire after 30 days
     if ($stayLoggedIn) {
       setcookie('MW_account', $account, (time() + 60 * 60 * 24 * 30),
-                '/', '', false, true);
+                '/', '', false, false);
      }
     return true;
   }
@@ -81,7 +81,7 @@
 
     // Persistent sign in
     if (MW_isSignInPersist()) {
-      setcookie('MW_account', '', time() - 3600, '/', '', false, true);
+      setcookie('MW_account', '', time() - 3600, '/', '', false, false);
     }
   }
 
