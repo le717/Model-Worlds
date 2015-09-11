@@ -68,7 +68,7 @@
       $mysqli->close();
       unset($stmt);
       unset($mysqli);
-      MW_redirectUser('forgot-password.php?signuperr=1');
+      // MW_redirectUser('forgot-password.php?signuperr=1');
       die();
     }
 
@@ -93,6 +93,6 @@
 
     // Auto-login the user and go back to the index
     MW_signIn($info['username']);
-    MW_redirectUser('index.php?actiemail=1');
+    // MW_redirectUser('index.php?actiemail=1');
     die();
   }
