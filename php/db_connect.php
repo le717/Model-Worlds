@@ -1,4 +1,9 @@
 <?php
+  /**
+   * Connect to the MySQL database.
+   *
+   * @return {MySQLi} Active database connection.
+   */
   function MW_dbConnect() {
     $DB_USER     = '<YOUR USERNAME HERE>';
     $DB_PASSWORD = '<YOUR PASSWORD HERE>';
