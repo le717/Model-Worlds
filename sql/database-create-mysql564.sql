@@ -18,5 +18,4 @@ CREATE TABLE `users` (
   UNIQUE INDEX `email` (`email`)
 )
 COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
+ENGINE=InnoDB;
