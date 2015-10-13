@@ -11,7 +11,7 @@ Suddenly, all of Dalí's activity stopped, and nobody was able to contact him. A
 When the announcement was made, I had long stopped development on my recreation due to having hit a tricky bug and being overwhelmed with college homework. However, I had no desire to continue development and run my own version of Model Worlds, nor did I wish to keep the source code to myself, as others might benefit from it and I could use it as an example of PHP work I have done. Thus I open-sourced my recreation on GitHub for all to use.
 
 ## Support ##
-In order to be clear, I will not provide support for any of the code present Furthermore, I will not provide a live demo of the site to everyone to view. If you would like to run code, be sure to check out the Requirements section below.
+In order to be clear, I will not provide support for any of the code present. I am releasing this in an incomplete state, and as such there are areas that were not fully completed, secured, or bug tested. Furthermore, I will not provide a live demo of the site to everyone to view. If you would like to run code, be sure to check out the Requirements section below.
 
 ## Requirements ##
 * PHP >= 5.4.23 (but < 7.0.0) (developed and tested on 5.4.23, 5.5.9, and 5.6.11)
