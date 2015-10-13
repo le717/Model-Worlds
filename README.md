@@ -14,7 +14,8 @@ When the announcement was made, I had long stopped development on my recreation 
 In order to be clear, I will not provide support for any of the code present. I am releasing this in an incomplete state, and as such there are areas that were not fully completed, secured, or bug tested. Furthermore, I will not provide a live demo of the site to everyone to view. If you would like to run code, be sure to check out the Requirements section below.
 
 ## Requirements ##
-* PHP >= 5.4.23 (but < 7.0.0) (developed and tested on 5.4.23, 5.5.9, and 5.6.11)
+* PHP >= 5.4 (developed and tested on 5.4.23, 5.5.9, and 5.6.11)
+* MySQL >= 5.6.0 (use the appropriate SQL script for your version)
 * [password_compat](https://github.com/ircmaxell/password_compat), saved to `lib/password.php`
 * [Mustache.php](https://github.com/bobthecow/mustache.php), saved to `lib/Mustache/**`
 
