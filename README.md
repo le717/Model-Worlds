@@ -2,7 +2,7 @@
 > A PHP-based recreation of [Model Worlds](http://ModelWorlds.net).
 
 ## History ##
-[Model Worlds](http://steamcommunity.com/app/332310/discussions/0/523890046877780804/) is a Steam Workshop-inspried site envisioned by Dalí Llama as a way to share brick-built [LEGO Digital Designer](http://ldd.lego.com) models compatible with the [LEGO&reg; Worlds](http://store.steampowered.com/app/332310) video game by TT Games.
+[Model Worlds](http://steamcommunity.com/app/332310/discussions/0/523890046877780804/) is a Steam Workshop-inspired site envisioned by Dalí Llama as a way to share brick-built [LEGO Digital Designer](http://ldd.lego.com) models compatible with the [LEGO&reg; Worlds](http://store.steampowered.com/app/332310) video game by TT Games.
 
 I had the privilege of learning Dalí's plans for the site and motivation behind it, in addition to providing moral and technical support and helping out with future site features. In the course of our many discussions, Dalí mentioned creating a brand new site that would be even better than the current one. However, because he was afraid of the plans falling through, I secretly set out on recreating the current Model Worlds site, both front-end and back-end (though I also did it for fun and to gain some experience in PHP). In a mere three days, I had completely recreated the site in a slightly-modified and responsive form and built an entire user registration/log in/log out system based on PHP and MySQL. I spent the remainder of the week filling in intentionally skipped areas and fixing various bugs in the system, in addition to implementing a contact form and password reset utility.
 
